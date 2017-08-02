@@ -1,11 +1,5 @@
-require 'matrix/ruby/sdk/version'
-require_relative 'sdk/client'
+require 'matrix/version'
+require 'matrix/client'
 
 module Matrix
-  module Ruby
-    # SDK
-    module Sdk
-      # Your code goes here...
-    end
-  end
 end
