@@ -1,10 +1,10 @@
 require 'spec_helper'
 
-RSpec.describe Matrix::Ruby::Sdk::Client do
+RSpec.describe Matrix::Client do
   it 'should get versions' do
     stub_request(:get, 'https://matrix.org/_matrix/client/versions')
       .to_return(status: 200, body: { versions: ['r0.0.1'] }.to_json, headers: {})
-    expect(Matrix::Ruby::Sdk::Client.versions).not_to be_empty
+    expect(Matrix::Client.versions).not_to be_empty
   end
 
   it 'logs in' do
@@ -14,13 +14,13 @@ RSpec.describe Matrix::Ruby::Sdk::Client do
     stub_request(:post, 'https://matrix.org/_matrix/client/r0/login')
       .with { |request| request.body =~ /success/ }
       .to_return(status: 200, body: { user_id: '@admin:matrix.org', access_token: 'abc123', home_server: 'matrix.org', device_id: 'aaabbbccc' }.to_json, headers: {})
-    client = Matrix::Ruby::Sdk::Client.new 'https://matrix.org',
+    client = Matrix::Client.new 'https://matrix.org',
                                            'admin',
                                            'failure'
     expect { client.login }.to raise_exception(TypeError)
     expect(client.token).to be_nil
 
-    client = Matrix::Ruby::Sdk::Client.new 'https://matrix.org',
+    client = Matrix::Client.new 'https://matrix.org',
                                            'admin',
                                            'success'
     expect { client.login }.not_to raise_error
@@ -33,11 +33,11 @@ RSpec.describe Matrix::Ruby::Sdk::Client do
       .to_return(status: 200, body: { user_id: '@admin:matrix.org', access_token: 'abc123', home_server: 'matrix.org', device_id: 'aaabbbccc' }.to_json, headers: {})
     stub_request(:post, 'https://matrix.org/_matrix/client/r0/logout')
       .to_return(status: 200)
-    client = Matrix::Ruby::Sdk::Client.new 'https://matrix.org',
+    client = Matrix::Client.new 'https://matrix.org',
                                            'admin',
                                            'failure'
     expect { client.logout }.to raise_exception(RuntimeError)
-    client = Matrix::Ruby::Sdk::Client.new 'https://matrix.org',
+    client = Matrix::Client.new 'https://matrix.org',
                                            'admin',
                                            'success'
     client.login

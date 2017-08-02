@@ -2,11 +2,11 @@
 
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'matrix/ruby/sdk/version'
+require 'matrix/version'
 
 Gem::Specification.new do |spec|
   spec.name          = 'matrix-ruby-sdk'
-  spec.version       = Matrix::Ruby::Sdk::VERSION
+  spec.version       = Matrix::VERSION
   spec.authors       = ['Aria']
   spec.email         = ['aria@ar1as.space']
 

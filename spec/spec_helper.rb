@@ -1,5 +1,5 @@
 require 'bundler/setup'
-require 'matrix/ruby/sdk'
+require 'matrix'
 require 'webmock/rspec'
 
 WebMock.disable_net_connect!(allow_localhost: true)
