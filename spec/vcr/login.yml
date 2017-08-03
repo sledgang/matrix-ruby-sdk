@@ -1,0 +1,81 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://localhost:8008/_matrix/client/r0/login
+    body:
+      encoding: UTF-8
+      string: '{"type":"m.login.password","user":"admin","password":"failure"}'
+    headers:
+      User-Agent:
+      - Faraday v0.12.2
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 403
+      message: Forbidden
+    headers:
+      Content-Length:
+      - '52'
+      Access-Control-Allow-Headers:
+      - Origin, X-Requested-With, Content-Type, Accept, Authorization
+      Server:
+      - Synapse/0.22.1
+      Date:
+      - Thu, 03 Aug 2017 04:02:24 GMT
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET, POST, PUT, DELETE, OPTIONS
+      Content-Type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: '{"errcode":"M_FORBIDDEN","error":"Invalid password"}'
+    http_version: 
+  recorded_at: Thu, 03 Aug 2017 04:02:24 GMT
+- request:
+    method: post
+    uri: http://localhost:8008/_matrix/client/r0/login
+    body:
+      encoding: UTF-8
+      string: '{"type":"m.login.password","user":"admin","password":"success"}'
+    headers:
+      User-Agent:
+      - Faraday v0.12.2
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Length:
+      - '359'
+      Access-Control-Allow-Headers:
+      - Origin, X-Requested-With, Content-Type, Accept, Authorization
+      Server:
+      - Synapse/0.22.1
+      Date:
+      - Thu, 03 Aug 2017 04:02:24 GMT
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET, POST, PUT, DELETE, OPTIONS
+      Content-Type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"MDAxN2xvY2F0aW9uIGxvY2FsaG9zdAowMDEzaWRlbnRpZmllciBrZXkKMDAxMGNpZCBnZW4gPSAxCjAwMjNjaWQgdXNlcl9pZCA9IEBhZG1pbjpsb2NhbGhvc3QKMDAxNmNpZCB0eXBlID0gYWNjZXNzCjAwMjFjaWQgbm9uY2UgPSAsZ05-K15GLVc5SVlUai1HCjAwMmZzaWduYXR1cmUgliYe0Ke3qJjqQk8KotliY21ShrSHvFzDxf-HzYaQLfUK","home_server":"localhost","user_id":"@admin:localhost","device_id":"ABLBRJWLKX"}'
+    http_version: 
+  recorded_at: Thu, 03 Aug 2017 04:02:25 GMT
+recorded_with: VCR 3.0.3
