@@ -17,25 +17,25 @@ module Matrix
     end
 
     def login
-      response = json_post("#{@base}/_matrix/client/r0/login",
+      response = Api.json_post("#{@base}/_matrix/client/r0/login",
                            type: 'm.login.password',
                            user: @username,
                            password: @password)
 
       raise JSON.parse(response.body) unless response.status == 200
-      @password = nil # clear out rawtext password
       obj = JSON.parse response.body
       @token = obj['access_token']
       @home_server = obj['home_server']
       @user_id = obj['user_id']
       @refresh_token = obj['refresh_token']
+      @api = Api.new(@token, @base)
       dispatch('logged_in', token: token)
     end
 
     def tokenrefresh
       return if @refresh_token.nil?
-      response = json_post("#{@base}/_matrix/client/r0/tokenrefresh",
-                           refresh_token: @refresh_token)
+      response = @api.json_post("/_matrix/client/r0/tokenrefresh",
+                                refresh_token: @refresh_token)
       obj = JSON.parse response.body
       raise obj unless response.status == 200
 
@@ -46,8 +46,7 @@ module Matrix
     # Possible error?
     def logout
       raise 'not logged in' unless logged_in?
-      response = Faraday.post("#{@base}/_matrix/client/r0/logout",
-                              access_token: @token)
+      response = @api.authed_post('/_matrix/client/r0/logout')
       raise JSON.parse(obj) unless response.status == 200
       @token = nil
       dispatch('logged_out', {})
@@ -57,9 +56,11 @@ module Matrix
       !@token.nil?
     end
 
+    attr_accessor :base
+    attr_accessor :username
+    attr_accessor :password
     attr_reader :token
     attr_reader :home_server
-    attr_reader :username
     attr_reader :user_id
 
     def on_event(event, &block)
@@ -72,13 +73,6 @@ module Matrix
       obj[:event] = event
       @on_event_handlers.each do |e|
         e.call(obj)
-      end
-    end
-
-    def json_post(url, hash)
-      Faraday.post(url) do |req|
-        req.headers['Content-Type'] = 'application/json'
-        req.body = hash.to_json
       end
     end
 
