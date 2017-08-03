@@ -1,0 +1,40 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://matrix.org/_matrix/client/versions
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.12.2
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Headers:
+      - Origin, X-Requested-With, Content-Type, Accept, Authorization
+      Server:
+      - Synapse/0.22.1 (b=matrix-org-hotfixes,aa58709)
+      Date:
+      - Thu, 03 Aug 2017 04:02:23 GMT
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET, POST, PUT, DELETE, OPTIONS
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"versions":["r0.0.1","r0.1.0","r0.2.0"]}'
+    http_version: 
+  recorded_at: Thu, 03 Aug 2017 04:02:24 GMT
+recorded_with: VCR 3.0.3

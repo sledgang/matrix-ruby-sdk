@@ -1,8 +1,10 @@
 require 'bundler/setup'
 require 'matrix'
 require 'webmock/rspec'
+require 'vcr'
+require 'support/vcr_setup'
 
-WebMock.disable_net_connect!(allow_localhost: true)
+WebMock.disable_net_connect!
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
   config.example_status_persistence_file_path = '.rspec_status'

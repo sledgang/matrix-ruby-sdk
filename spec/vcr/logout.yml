@@ -1,0 +1,81 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://localhost:8008/_matrix/client/r0/login
+    body:
+      encoding: UTF-8
+      string: '{"type":"m.login.password","user":"admin","password":"success"}'
+    headers:
+      User-Agent:
+      - Faraday v0.12.2
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Length:
+      - '359'
+      Access-Control-Allow-Headers:
+      - Origin, X-Requested-With, Content-Type, Accept, Authorization
+      Server:
+      - Synapse/0.22.1
+      Date:
+      - Thu, 03 Aug 2017 04:05:50 GMT
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET, POST, PUT, DELETE, OPTIONS
+      Content-Type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"MDAxN2xvY2F0aW9uIGxvY2FsaG9zdAowMDEzaWRlbnRpZmllciBrZXkKMDAxMGNpZCBnZW4gPSAxCjAwMjNjaWQgdXNlcl9pZCA9IEBhZG1pbjpsb2NhbGhvc3QKMDAxNmNpZCB0eXBlID0gYWNjZXNzCjAwMjFjaWQgbm9uY2UgPSBKZD1AVnRJNkd6RlNIflZOCjAwMmZzaWduYXR1cmUgoAnJf9b3h_qHBbsTdq5ZJ_rqYCuiPTz_Ho0P2L08SNcK","home_server":"localhost","user_id":"@admin:localhost","device_id":"PTWETRLJXT"}'
+    http_version: 
+  recorded_at: Thu, 03 Aug 2017 04:05:51 GMT
+- request:
+    method: post
+    uri: http://localhost:8008/_matrix/client/r0/logout
+    body:
+      encoding: UTF-8
+      string: access_token=MDAxN2xvY2F0aW9uIGxvY2FsaG9zdAowMDEzaWRlbnRpZmllciBrZXkKMDAxMGNpZCBnZW4gPSAxCjAwMjNjaWQgdXNlcl9pZCA9IEBhZG1pbjpsb2NhbGhvc3QKMDAxNmNpZCB0eXBlID0gYWNjZXNzCjAwMjFjaWQgbm9uY2UgPSBKZD1AVnRJNkd6RlNIflZOCjAwMmZzaWduYXR1cmUgoAnJf9b3h_qHBbsTdq5ZJ_rqYCuiPTz_Ho0P2L08SNcK
+    headers:
+      User-Agent:
+      - Faraday v0.12.2
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Length:
+      - '2'
+      Access-Control-Allow-Headers:
+      - Origin, X-Requested-With, Content-Type, Accept, Authorization
+      Server:
+      - Synapse/0.22.1
+      Date:
+      - Thu, 03 Aug 2017 04:05:51 GMT
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET, POST, PUT, DELETE, OPTIONS
+      Content-Type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: "{}"
+    http_version: 
+  recorded_at: Thu, 03 Aug 2017 04:05:51 GMT
+recorded_with: VCR 3.0.3
