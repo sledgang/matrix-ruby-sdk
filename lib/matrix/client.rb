@@ -34,7 +34,7 @@ module Matrix
 
     def tokenrefresh
       return if @refresh_token.nil?
-      response = @api.json_post("/_matrix/client/r0/tokenrefresh",
+      response = @api.json_post('/_matrix/client/r0/tokenrefresh',
                                 refresh_token: @refresh_token)
       obj = JSON.parse response.body
       raise obj unless response.status == 200
