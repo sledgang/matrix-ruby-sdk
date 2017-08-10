@@ -67,6 +67,19 @@ module Matrix
       @on_event_handlers << Handler.new(event, &block)
     end
 
+    def get_filter(userid, filterid)
+      JSON.parse @api.get(
+        "/_matrix/client/r0/user/#{userid}/filter/#{filterid}"
+      )
+    end
+
+    def post_filter(userid, hash)
+      @api.authed_post(
+        "/_matrix/client/r0/user/#{userid}/filter",
+        hash
+      )
+    end
+
     private
 
     def dispatch(event, obj)

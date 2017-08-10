@@ -12,6 +12,10 @@ module Matrix
                   access_token: @token)
     end
 
+    def get(url)
+      Faraday.get("#{@base}#{url}")
+    end
+
     def authed_post(url, hash = {})
       hash[:access_token] = @token
       Faraday.post("#{@base}#{url}",
